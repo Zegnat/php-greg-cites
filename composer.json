@@ -1,0 +1,6 @@
+{
+    "require": {
+        "renanbr/bibtex-parser": "^2.0",
+        "twig/twig": "^2.4"
+    }
+}

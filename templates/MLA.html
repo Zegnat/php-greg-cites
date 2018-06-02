@@ -1,0 +1,8 @@
+{% for article in articles %}
+<p class="h-cite">
+  <span class="p-author h-card">{{article.author|e}}</span>.
+  “<cite style="font-style:normal" class="p-name">{{article.title|e}}</cite>.”
+  <span class="p-publication"><cite>{{article.journal|e}}</cite>{% if article.volume %} {{article.volume|e}}{% endif %}</span>
+  (<time class="dt-published">{{article.year|e}}</time>){% if article.pages %}: {{article.pages|replace({'--': '–'})|e}}{% endif %}.
+</p>
+{% endfor %}
