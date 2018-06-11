@@ -1,13 +1,13 @@
 {% for reference in references %}
 {% if reference.type == "article" %}
-<p class="h-cite">
+<p style="padding-left:22px;text-indent:-22px" class="h-cite">
   <span class="p-author h-card">{{reference.author|e}}</span>
   (<time class="dt-published">{{reference.year|e}}</time>).
   <cite style="font-style:normal" class="p-name">{{reference.title|e}}</cite>.
   <span style="font-style:italic" class="p-publication"><cite>{{reference.journal|e}}</cite>{% if reference.volume %}, {{reference.volume|e}}{% endif %}</span>{% if reference.pages %}, {{reference.pages|replace({'--': '–'})|e}}{% endif %}.
 </p>
 {% elseif reference.type == "book" %}
-<p class="h-cite">
+<p style="padding-left:22px;text-indent:-22px" class="h-cite">
   <span class="p-author h-card">{{reference.author|e}}</span>
   (<time class="dt-published">{{reference.year|e}}</time>).
   <cite class="p-name">{{reference.title|e}}</cite>.
@@ -16,7 +16,7 @@
   {% endif %}
 </p>
 {% elseif reference.type == "inbook" %}
-<p class="h-cite">
+<p style="padding-left:22px;text-indent:-22px" class="h-cite">
   <span class="p-author h-card">{{reference.author|e}}</span>
   <time class="dt-published">{{reference.year|e}}</time>.
   <cite style="font-style:normal" class="p-name">{{reference.chapter|e}}</cite>.
