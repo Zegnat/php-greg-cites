@@ -25,6 +25,7 @@ $templates = array_map(
     )
 );
 
+$out = '';
 $post = '';
 $template = 'APA';
 if (isset($_POST['bibtex'])) {
