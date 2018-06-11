@@ -1,8 +1,12 @@
-{% for article in articles %}
+{% for reference in references %}
+{% if reference.type == "article" %}
 <p class="h-cite">
-  <span class="p-author h-card">{{article.author|e}}</span>.
-  “<cite style="font-style:normal" class="p-name">{{article.title|e}}</cite>.”
-  <span class="p-publication"><cite>{{article.journal|e}}</cite>{% if article.volume %} {{article.volume|e}}{% endif %}</span>
-  (<time class="dt-published">{{article.year|e}}</time>){% if article.pages %}: {{article.pages|replace({'--': '–'})|e}}{% endif %}.
+  <span class="p-author h-card">{{reference.author|e}}</span>.
+  “<cite style="font-style:normal" class="p-name">{{reference.title|e}}</cite>.”
+  <span class="p-publication"><cite>{{reference.journal|e}}</cite>{% if reference.volume %} {{reference.volume|e}}{% endif %}</span>
+  (<time class="dt-published">{{reference.year|e}}</time>){% if reference.pages %}: {{reference.pages|replace({'--': '–'})|e}}{% endif %}.
 </p>
+{% else %}
+<p>There is no citation template for the supplied <var>{{reference.type|e}}</var> type.</p>
+{% endif %}
 {% endfor %}

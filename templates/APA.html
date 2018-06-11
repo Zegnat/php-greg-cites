@@ -1,8 +1,35 @@
-{% for article in articles %}
+{% for reference in references %}
+{% if reference.type == "article" %}
 <p class="h-cite">
-  <span class="p-author h-card">{{article.author|e}}</span>
-  (<time class="dt-published">{{article.year|e}}</time>).
-  <cite style="font-style:normal" class="p-name">{{article.title|e}}</cite>.
-  <span style="font-style:italic" class="p-publication"><cite>{{article.journal|e}}</cite>{% if article.volume %}, {{article.volume|e}}{% endif %}</span>{% if article.pages %}, {{article.pages|replace({'--': '–'})|e}}{% endif %}.
+  <span class="p-author h-card">{{reference.author|e}}</span>
+  (<time class="dt-published">{{reference.year|e}}</time>).
+  <cite style="font-style:normal" class="p-name">{{reference.title|e}}</cite>.
+  <span style="font-style:italic" class="p-publication"><cite>{{reference.journal|e}}</cite>{% if reference.volume %}, {{reference.volume|e}}{% endif %}</span>{% if reference.pages %}, {{reference.pages|replace({'--': '–'})|e}}{% endif %}.
 </p>
+{% elseif reference.type == "book" %}
+<p class="h-cite">
+  <span class="p-author h-card">{{reference.author|e}}</span>
+  (<time class="dt-published">{{reference.year|e}}</time>).
+  <cite class="p-name">{{reference.title|e}}</cite>.
+  {% if reference.publisher %}
+  <span class="p-publisher h-card">{% if reference.address %}<span class="p-locality">{{reference.address|e}}</span>: {% endif %}<span class="p-name">{{reference.publisher|e}}</span>
+  {% endif %}
+</p>
+{% elseif reference.type == "inbook" %}
+<p class="h-cite">
+  <span class="p-author h-card">{{reference.author|e}}</span>
+  <time class="dt-published">{{reference.year|e}}</time>.
+  <cite style="font-style:normal" class="p-name">{{reference.chapter|e}}</cite>.
+  In
+  {% if reference.editor %}
+  <span class="h-card">{{reference.editor|e}}</span> (eds.)
+  {% endif %}
+  <cite class="p-name">{{reference.title|e}}</cite>{% if reference.pages %} ({{reference.pages|replace({'--': '–'})|e}}){% endif %}.
+  {% if reference.publisher %}
+  <span class="p-publisher h-card">{% if reference.address %}<span class="p-locality">{{reference.address|e}}</span>: {% endif %}<span class="p-name">{{reference.publisher|e}}</span>
+  {% endif %}
+</p>
+{% else %}
+<p>There is no citation template for the supplied <var>{{reference.type|e}}</var> type.</p>
+{% endif %}
 {% endfor %}

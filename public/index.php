@@ -37,7 +37,7 @@ if (isset($_POST['bibtex'])) {
     $listener = new Listener();
     $parser->addListener($listener);
     $parser->parseString($post);
-    $out = $twig->render($template . '.html', ['articles' => $listener->export()]);
+    $out = $twig->render($template . '.html', ['references' => $listener->export()]);
 }
 
 ?><!doctype html>
@@ -62,6 +62,6 @@ if (isset($_POST['bibtex'])) {
     <label for="snippet">HTML</label>
     <textarea id="snippet" readonly><?= htmlspecialchars($out, ENT_NOQUOTES) ?></textarea>
     <p>Preview</p>
-    <div id="preview"><?= $out ?? '' ?></div>
+    <div id="preview"><?= $out ?></div>
   </body>
 </html>
